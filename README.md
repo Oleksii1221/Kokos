@@ -1,78 +1,140 @@
-# Kokos / KokoClip
+# Kokos
 
-Telegram bot that watches chats for TikTok and YouTube Shorts links, downloads the linked clip, and replies with the video.
+Kokos is a production-oriented Telegram bot that watches chats for TikTok and
+YouTube Shorts links, downloads the linked media on the server, and replies to
+the original message with the video.
 
-## Git flow
+It is designed for group chats, self-hosted Docker deployments, and operators
+who want clear logs, statistics, and maintenance controls.
 
-- `master` is only for stable releases.
-- `dev` is for development and testing.
-- Do not push to `master` until release approval.
+![Kokos logo](assets/kokoclip-logo.png)
 
-## Features
+## Highlights
 
-- Works in private chats and groups.
-- Detects TikTok, `vm.tiktok.com`, YouTube Shorts, and `youtu.be` links.
-- Replies to the original message with the video.
-- Stores user, chat, activity, and processing statistics in PostgreSQL.
-- Caches Telegram `file_id` values so repeated links do not need to be downloaded again.
-- Runs in Docker.
-- Has Windows batch files for start, stop, and maintenance mode.
+- Detects TikTok, `vm.tiktok.com`, `vt.tiktok.com`, YouTube Shorts, and `youtu.be` links.
+- Replies directly to the message that contains the link.
+- Runs as a Docker Compose stack with PostgreSQL and Redis.
+- Stores statistics for users, chats, active users, processed links, and successful videos.
+- Caches Telegram `file_id` values to avoid downloading the same video repeatedly.
+- Supports maintenance mode while keeping the bot online.
+- Includes Windows batch files for start, stop, and maintenance operations.
+- Ships with documentation, legal pages, GitHub templates, CI, and logo assets.
 
-## First setup
+## Quick Start
 
-Copy `.env.example` to `.env` and fill the real values:
+Copy the environment file:
 
 ```bat
 copy .env.example .env
 ```
 
-Important variables:
-
-- `BOT_TOKEN` - Telegram bot token from BotFather.
-- `OWNER_ID` - your Telegram user ID for owner-only commands.
-- `POSTGRES_PASSWORD` - change this before running on a server.
-- `DATABASE_URL` - must use the same PostgreSQL password.
-
-For groups, disable privacy mode in BotFather:
+Fill in:
 
 ```text
-/setprivacy -> choose bot -> Disable
+BOT_TOKEN=your_telegram_bot_token
+OWNER_ID=your_telegram_user_id
+POSTGRES_PASSWORD=change_this_password
+DATABASE_URL=postgresql://kokos:change_this_password@postgres:5432/kokos
 ```
 
-## Run
+Start the bot:
 
 ```bat
 start_bot.bat
 ```
 
-This builds containers, starts the bot, and opens live logs.
-
-## Stop
+Stop the bot:
 
 ```bat
 stop_bot.bat
 ```
 
-## Maintenance mode
+Start maintenance mode:
 
 ```bat
 maintenance_bot.bat
 ```
 
-In maintenance mode the bot stays online and tells users that video processing is temporarily unavailable.
+## BotFather Setup
+
+For group chats, disable privacy mode so Kokos can see normal messages:
+
+```text
+/setprivacy -> choose bot -> Disable
+```
+
+Suggested commands:
+
+```text
+start - Activate the bot
+stats - Show public bot statistics
+health - Show bot status
+admin_stats - Owner statistics
+```
 
 ## Commands
 
-- `/start` - activate the bot.
-- `/stats` - public bot statistics.
-- `/admin_stats` - owner-only raw stats.
-- `/health` - basic status check.
+- `/start` - activate the bot and show a short introduction.
+- `/stats` - show public usage statistics.
+- `/admin_stats` - show owner-only raw statistics.
+- `/health` - show runtime mode and basic health.
 
-## Logo idea
+## Project Structure
 
-Use the name **KokoClip**. The logo should be a dark circular icon with a clean white play triangle in the center and two short turquoise motion ribbons around it. It should read well as a small Telegram avatar.
+```text
+app/
+  bot.py          Telegram handlers and runtime flow
+  config.py       Environment configuration
+  db.py           PostgreSQL schema and queries
+  downloader.py   yt-dlp download pipeline
+  url_parser.py   Supported URL detection
+assets/           Logo files
+docs/             GitHub Pages site and operator documentation
+tests/            Unit tests
+```
 
-Current logo files:
+## Documentation
 
-- `assets/kokoclip-logo.png`
-- `assets/kokoclip-logo.svg`
+- [Deployment guide](docs/deployment.md)
+- [Operations guide](docs/operations.md)
+- [BotFather setup](docs/botfather.md)
+- [Architecture](docs/architecture.md)
+- [Privacy policy](docs/privacy.html)
+- [Terms of use](docs/terms.html)
+
+## Development
+
+Install development dependencies:
+
+```bash
+python -m pip install -r requirements-dev.txt
+```
+
+Run checks:
+
+```bash
+python -m compileall app
+python -m pytest
+```
+
+## Git Flow
+
+- `master` is for stable releases only.
+- `dev` is for development and testing.
+- Release changes are promoted from `dev` to `master` only after approval.
+
+## Security
+
+Never commit `.env`, Telegram bot tokens, session files, database passwords, or
+production logs. If a token is exposed, rotate it in BotFather immediately.
+
+See [Security Policy](SECURITY.md).
+
+## Legal
+
+Kokos is not affiliated with Telegram, TikTok, YouTube, Google, ByteDance, or
+related brands. Operators are responsible for using Kokos in compliance with
+applicable laws, platform terms, chat rules, and copyright requirements.
+
+This project is licensed under the [MIT License](LICENSE).
+
