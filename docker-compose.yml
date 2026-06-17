@@ -1,0 +1,43 @@
+services:
+  bot:
+    build: .
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      BOT_MAINTENANCE: ${BOT_MAINTENANCE:-false}
+      MAX_PARALLEL_DOWNLOADS: ${MAX_PARALLEL_DOWNLOADS:-3}
+      MAX_VIDEO_MB: ${MAX_VIDEO_MB:-48}
+      DOWNLOAD_TIMEOUT_SECONDS: ${DOWNLOAD_TIMEOUT_SECONDS:-120}
+      PUBLIC_STATS: ${PUBLIC_STATS:-true}
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    volumes:
+      - ./downloads:/app/downloads
+
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-kokos}
+      POSTGRES_USER: ${POSTGRES_USER:-kokos}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-change_me}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-kokos} -d ${POSTGRES_DB:-kokos}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
