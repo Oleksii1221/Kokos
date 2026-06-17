@@ -72,3 +72,7 @@ In maintenance mode the bot stays online and tells users that video processing i
 
 Use the name **KokoClip**. The logo should be a dark circular icon with a clean white play triangle in the center and two short turquoise motion ribbons around it. It should read well as a small Telegram avatar.
 
+Current logo files:
+
+- `assets/kokoclip-logo.png`
+- `assets/kokoclip-logo.svg`
