@@ -1,63 +1,75 @@
-# Kokos
-
-[![CI](https://github.com/Oleksii1221/Kokos/actions/workflows/ci.yml/badge.svg)](https://github.com/Oleksii1221/Kokos/actions/workflows/ci.yml)
-[![CodeQL](https://github.com/Oleksii1221/Kokos/actions/workflows/codeql.yml/badge.svg)](https://github.com/Oleksii1221/Kokos/actions/workflows/codeql.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-21d6c3.svg)](LICENSE)
-[![Docker](https://img.shields.io/badge/runtime-Docker-2496ED.svg)](Dockerfile)
-[![Python](https://img.shields.io/badge/python-3.12-b9f24b.svg)](https://www.python.org/)
-
-Kokos is a production-oriented Telegram bot that watches chats for TikTok and
-YouTube Shorts links, downloads the linked media on the server, and replies to
-the original message with the video.
-
-It is designed for group chats, self-hosted Docker deployments, and operators
-who want clear logs, statistics, and maintenance controls.
-
 <p align="center">
-  <img src="assets/kokoclip-logo.png" width="180" alt="Kokos logo">
+  <img src="assets/kokoclip-logo.png" width="148" alt="Kokos logo">
 </p>
 
-## Product Promise
+<h1 align="center">Kokos</h1>
 
-Kokos keeps short-video sharing simple for Telegram communities:
+<p align="center">
+  <strong>Production-ready Telegram bot for turning TikTok and YouTube Shorts links into native video replies.</strong>
+</p>
 
-1. A user sends a supported short-video link.
-2. Kokos detects it automatically.
-3. Kokos replies to that message with the video file.
-4. Operators can see logs and usage statistics without manually managing user IDs.
+<p align="center">
+  <a href="https://github.com/Oleksii1221/Kokos/releases/tag/v0.1.0"><img alt="version" src="https://img.shields.io/badge/version-0.1.0-21d6c3?style=for-the-badge&labelColor=4a4a4a"></a>
+  <img alt="platform" src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-b9f24b?style=for-the-badge&labelColor=4a4a4a">
+  <a href="LICENSE"><img alt="license" src="https://img.shields.io/badge/license-MIT-101820?style=for-the-badge&labelColor=4a4a4a"></a>
+</p>
 
-## Highlights
+<p align="center">
+  <a href="https://github.com/Oleksii1221/Kokos/actions/workflows/ci.yml"><img alt="CI" src="https://img.shields.io/github/actions/workflow/status/Oleksii1221/Kokos/ci.yml?branch=dev&label=CI&style=flat-square&labelColor=101820"></a>
+  <a href="https://github.com/Oleksii1221/Kokos/actions/workflows/codeql.yml"><img alt="CodeQL" src="https://img.shields.io/github/actions/workflow/status/Oleksii1221/Kokos/codeql.yml?branch=dev&label=CodeQL&style=flat-square&labelColor=101820"></a>
+  <img alt="Python" src="https://img.shields.io/badge/Python-3.12-3776AB?style=flat-square&logo=python&logoColor=white&labelColor=101820">
+  <img alt="aiogram" src="https://img.shields.io/badge/aiogram-3.13.1-2CA5E0?style=flat-square&labelColor=101820">
+  <img alt="Docker" src="https://img.shields.io/badge/Docker-ready-2496ED?style=flat-square&logo=docker&logoColor=white&labelColor=101820">
+  <img alt="PostgreSQL" src="https://img.shields.io/badge/PostgreSQL-16-4169E1?style=flat-square&logo=postgresql&logoColor=white&labelColor=101820">
+  <img alt="Redis" src="https://img.shields.io/badge/Redis-7-DC382D?style=flat-square&logo=redis&logoColor=white&labelColor=101820">
+</p>
 
-- Detects TikTok, `vm.tiktok.com`, `vt.tiktok.com`, YouTube Shorts, and `youtu.be` links.
-- Replies directly to the message that contains the link.
-- Runs as a Docker Compose stack with PostgreSQL and Redis.
-- Stores statistics for users, chats, active users, processed links, and successful videos.
-- Caches Telegram `file_id` values to avoid downloading the same video repeatedly.
-- Supports maintenance mode while keeping the bot online.
-- Includes Windows batch files for start, stop, and maintenance operations.
-- Ships with documentation, legal pages, GitHub templates, CI, and logo assets.
+<p align="center">
+  <a href="https://oleksii1221.github.io/Kokos/">Website</a>
+  ·
+  <a href="docs/deployment.md">Deploy</a>
+  ·
+  <a href="docs/operations.md">Operate</a>
+  ·
+  <a href="docs/production-checklist.md">Production checklist</a>
+  ·
+  <a href="ROADMAP.md">Roadmap</a>
+</p>
 
-## Repository Status
+---
 
-| Area | Status |
+## What Kokos Does
+
+Kokos watches Telegram chats for supported short-video links and replies to the
+original message with the actual video file. It is built for self-hosted
+community use: simple to run, visible in logs, backed by statistics, and safe to
+operate without manually managing user IDs.
+
+```text
+Telegram message -> URL detection -> cache lookup -> yt-dlp download -> video reply -> statistics
+```
+
+## Core Capabilities
+
+| Capability | Included |
 | --- | --- |
-| Runtime | Docker Compose |
-| Telegram mode | Long polling |
-| Database | PostgreSQL |
-| Cache/queue foundation | Redis |
-| CI | Python tests and Docker build |
-| Security automation | CodeQL and Dependabot |
-| Public docs | GitHub Pages-ready `/docs` site |
+| TikTok links | `tiktok.com`, `vm.tiktok.com`, `vt.tiktok.com` |
+| YouTube Shorts | `youtube.com/shorts/...`, `youtu.be/...` |
+| Group chats | Works after BotFather privacy mode is disabled |
+| Direct messages | Works out of the box |
+| Statistics | Users, chats, active users, link events, successful videos |
+| Video cache | Telegram `file_id` reuse for repeated links |
+| Maintenance mode | Bot stays online while processing is paused |
+| Server runtime | Docker Compose with PostgreSQL and Redis |
+| Windows controls | Start, stop, and maintenance `.bat` files |
 
 ## Quick Start
-
-Copy the environment file:
 
 ```bat
 copy .env.example .env
 ```
 
-Fill in:
+Fill in the production values:
 
 ```text
 BOT_TOKEN=your_telegram_bot_token
@@ -66,33 +78,27 @@ POSTGRES_PASSWORD=change_this_password
 DATABASE_URL=postgresql://kokos:change_this_password@postgres:5432/kokos
 ```
 
-Start the bot:
+Start the stack:
 
 ```bat
 start_bot.bat
 ```
 
-Stop the bot:
+Follow the live console:
 
-```bat
-stop_bot.bat
-```
-
-Start maintenance mode:
-
-```bat
-maintenance_bot.bat
+```bash
+docker compose logs -f bot
 ```
 
 ## BotFather Setup
 
-For group chats, disable privacy mode so Kokos can see normal messages:
+Kokos needs to see normal group messages to detect links. Disable privacy mode:
 
 ```text
 /setprivacy -> choose bot -> Disable
 ```
 
-Suggested commands:
+Suggested command list:
 
 ```text
 start - Activate the bot
@@ -103,12 +109,40 @@ admin_stats - Owner statistics
 
 ## Commands
 
-- `/start` - activate the bot and show a short introduction.
-- `/stats` - show public usage statistics.
-- `/admin_stats` - show owner-only raw statistics.
-- `/health` - show runtime mode and basic health.
+| Command | Access | Description |
+| --- | --- | --- |
+| `/start` | Everyone | Activates the bot and shows the intro message. |
+| `/stats` | Everyone or owner-only | Shows public usage statistics. |
+| `/admin_stats` | Owner | Shows raw owner statistics. |
+| `/health` | Everyone | Shows active or maintenance runtime mode. |
 
-## Project Structure
+## Runtime Architecture
+
+```mermaid
+flowchart LR
+    A["Telegram chat"] --> B["aiogram bot"]
+    B --> C["URL parser"]
+    C --> D{"Cached?"}
+    D -- yes --> E["Reply with Telegram file_id"]
+    D -- no --> F["yt-dlp + ffmpeg"]
+    F --> G["Upload video"]
+    G --> H["Save file_id cache"]
+    B --> I["PostgreSQL statistics"]
+    B --> J["Docker logs"]
+```
+
+## Repository Quality
+
+| Area | Status |
+| --- | --- |
+| CI | Python compile, pytest, Docker build |
+| Security | CodeQL workflow and Dependabot |
+| Docs | GitHub Pages-ready website and operator guides |
+| Governance | Code of conduct, security policy, contribution guide |
+| Release process | SemVer, changelog, GitHub Release workflow |
+| Branch model | `dev` for work, `master` for stable releases |
+
+## Project Layout
 
 ```text
 app/
@@ -117,72 +151,50 @@ app/
   db.py           PostgreSQL schema and queries
   downloader.py   yt-dlp download pipeline
   url_parser.py   Supported URL detection
-assets/           Logo files
-docs/             GitHub Pages site and operator documentation
+assets/           Repository and bot logo assets
+docs/             Public website and operator documentation
 tests/            Unit tests
 ```
 
 ## Documentation
 
-- [Deployment guide](docs/deployment.md)
-- [Operations guide](docs/operations.md)
-- [BotFather setup](docs/botfather.md)
-- [Architecture](docs/architecture.md)
-- [Configuration](docs/configuration.md)
-- [Production checklist](docs/production-checklist.md)
-- [Architecture decisions](docs/adr.md)
-- [Privacy policy](docs/privacy.html)
-- [Terms of use](docs/terms.html)
-- [Roadmap](ROADMAP.md)
-- [Release process](RELEASE.md)
+| Guide | Purpose |
+| --- | --- |
+| [Deployment](docs/deployment.md) | Start Kokos locally or on a server. |
+| [Operations](docs/operations.md) | Logs, health, common issues, backups. |
+| [Configuration](docs/configuration.md) | Environment variables and defaults. |
+| [BotFather](docs/botfather.md) | Telegram-side setup. |
+| [Architecture](docs/architecture.md) | Runtime flow and scaling notes. |
+| [Production checklist](docs/production-checklist.md) | Pre-flight list before real users. |
+| [Roadmap](ROADMAP.md) | Planned improvements. |
+| [Release process](RELEASE.md) | How stable releases are promoted. |
 
 ## Development
 
-Install development dependencies:
-
 ```bash
 python -m pip install -r requirements-dev.txt
-```
-
-Run checks:
-
-```bash
 python -m compileall app
 python -m pytest
+docker build -t kokos-bot:dev .
 ```
 
-## Git Flow
+## Operations Shortcuts
 
-- `master` is for stable releases only.
-- `dev` is for development and testing.
-- Release changes are promoted from `dev` to `master` only after approval.
+| Action | Command |
+| --- | --- |
+| Start | `start_bot.bat` |
+| Stop | `stop_bot.bat` |
+| Maintenance | `maintenance_bot.bat` |
+| Logs | `docker compose logs -f bot` |
+| Status | `docker compose ps` |
 
-## Operations
+## Security Notes
 
-Live logs:
+Never commit `.env`, Telegram bot tokens, database passwords, session files, or
+production logs. If a token was pasted into chat, screenshots, terminals, or CI
+logs, rotate it in BotFather immediately.
 
-```bash
-docker compose logs -f bot
-```
-
-Container status:
-
-```bash
-docker compose ps
-```
-
-Maintenance mode:
-
-```bash
-BOT_MAINTENANCE=true docker compose up -d --build
-```
-
-## Security
-
-Never commit `.env`, Telegram bot tokens, session files, database passwords, or
-production logs. If a token is exposed, rotate it in BotFather immediately.
-
-See [Security Policy](SECURITY.md).
+See [SECURITY.md](SECURITY.md) and [NOTICE](NOTICE).
 
 ## Legal
 
@@ -190,5 +202,5 @@ Kokos is not affiliated with Telegram, TikTok, YouTube, Google, ByteDance, or
 related brands. Operators are responsible for using Kokos in compliance with
 applicable laws, platform terms, chat rules, and copyright requirements.
 
-This project is licensed under the [MIT License](LICENSE).
+Released under the [MIT License](LICENSE).
 
