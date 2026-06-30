@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Production Checklist - Kokos</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <header class="topbar"><div class="brand"><img src="./assets/kokoclip-logo.svg" alt=""><span>Kokos</span></div><nav><a href="./index.html">Home</a><a href="./privacy.html">Privacy</a><a href="./terms.html">Terms</a></nav></header>
+    <main class="docs-list">
+      <h1>Production Checklist</h1>
+      <p class="lead">Use this checklist before inviting Kokos into real group chats.</p>
+      <ul>
+        <li>Rotate any token that was pasted into chat, screenshots, logs, or terminals.</li>
+        <li>Set a strong <code>POSTGRES_PASSWORD</code>.</li>
+        <li>Set <code>OWNER_ID</code> to the operator Telegram user ID.</li>
+        <li>Disable BotFather privacy mode for group operation.</li>
+        <li>Confirm <code>.env</code> is not committed.</li>
+        <li>Run <code>docker compose up -d --build</code>.</li>
+        <li>Send <code>/health</code> to the bot.</li>
+        <li>Send <code>/stats</code> to verify database writes.</li>
+        <li>Test one TikTok link and one YouTube Shorts link.</li>
+        <li>Configure PostgreSQL backups.</li>
+        <li>Decide log retention policy.</li>
+      </ul>
+    </main>
+  </body>
+</html>
+
+

@@ -154,6 +154,21 @@ article p {
   padding: 24px 0 72px;
 }
 
+.docs-list p,
+.docs-list li,
+pre {
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+pre {
+  overflow: auto;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #0b1218;
+}
+
 .docs-list a {
   color: var(--cyan);
 }
@@ -178,4 +193,3 @@ article p {
     width: 220px;
   }
 }
-

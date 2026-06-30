@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Operations - Kokos</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <header class="topbar"><div class="brand"><img src="./assets/kokoclip-logo.svg" alt=""><span>Kokos</span></div><nav><a href="./index.html">Home</a><a href="./privacy.html">Privacy</a><a href="./terms.html">Terms</a></nav></header>
+    <main class="docs-list">
+      <h1>Operations</h1>
+      <p class="lead">Kokos is designed to be observable from the terminal and manageable with simple Docker commands.</p>
+      <h2>Live logs</h2>
+      <pre><code>docker compose logs -f bot</code></pre>
+      <h2>Status</h2>
+      <pre><code>docker compose ps</code></pre>
+      <h2>Health</h2>
+      <p>Send <code>/health</code> to the bot. It should report whether the bot is active or in maintenance mode.</p>
+      <h2>Group messages</h2>
+      <p>If Kokos does not see links in groups, disable privacy mode in BotFather.</p>
+    </main>
+  </body>
+</html>
+
+

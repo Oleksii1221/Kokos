@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Architecture - Kokos</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <header class="topbar"><div class="brand"><img src="./assets/kokoclip-logo.svg" alt=""><span>Kokos</span></div><nav><a href="./index.html">Home</a><a href="./privacy.html">Privacy</a><a href="./terms.html">Terms</a></nav></header>
+    <main class="docs-list">
+      <h1>Architecture</h1>
+      <p class="lead">Kokos is a polling-based Telegram bot designed for straightforward Docker deployment.</p>
+      <h2>Components</h2>
+      <ul>
+        <li><code>app/bot.py</code> - Telegram handlers, commands, and runtime flow.</li>
+        <li><code>app/url_parser.py</code> - supported URL detection.</li>
+        <li><code>app/downloader.py</code> - <code>yt-dlp</code> execution and cleanup.</li>
+        <li><code>app/db.py</code> - PostgreSQL schema and statistics queries.</li>
+        <li><code>docker-compose.yml</code> - bot, PostgreSQL, and Redis services.</li>
+      </ul>
+      <h2>Flow</h2>
+      <p>A message is received, user and chat activity are recorded, supported links are extracted, the cache is checked, and missing videos are downloaded, uploaded, cached, and counted.</p>
+      <h2>Scaling</h2>
+      <p>The current release uses an in-process semaphore for parallel downloads. Redis is included as the foundation for future distributed queues and rate limits.</p>
+    </main>
+  </body>
+</html>
+
+

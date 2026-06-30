@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Configuration - Kokos</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <header class="topbar"><div class="brand"><img src="./assets/kokoclip-logo.svg" alt=""><span>Kokos</span></div><nav><a href="./index.html">Home</a><a href="./privacy.html">Privacy</a><a href="./terms.html">Terms</a></nav></header>
+    <main class="docs-list">
+      <h1>Configuration</h1>
+      <p class="lead">Kokos is configured entirely through environment variables, making it simple to run locally, on a VPS, or inside a managed Docker environment.</p>
+      <h2>Required</h2>
+      <ul>
+        <li><code>BOT_TOKEN</code> - Telegram bot token from BotFather.</li>
+        <li><code>DATABASE_URL</code> - PostgreSQL connection string used by the bot.</li>
+        <li><code>POSTGRES_PASSWORD</code> - PostgreSQL password used by the database container.</li>
+      </ul>
+      <h2>Recommended</h2>
+      <ul>
+        <li><code>OWNER_ID</code> - Telegram user ID for owner-only commands.</li>
+        <li><code>MAX_PARALLEL_DOWNLOADS</code> - concurrent download limit.</li>
+        <li><code>MAX_VIDEO_MB</code> - maximum accepted video size.</li>
+        <li><code>PUBLIC_STATS</code> - controls public access to <code>/stats</code>.</li>
+      </ul>
+      <h2>Maintenance</h2>
+      <p>Set <code>BOT_MAINTENANCE=true</code> to keep the bot online while disabling video processing.</p>
+    </main>
+  </body>
+</html>
+
+

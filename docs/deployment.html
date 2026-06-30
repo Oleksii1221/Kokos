@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Deployment - Kokos</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <header class="topbar"><div class="brand"><img src="./assets/kokoclip-logo.svg" alt=""><span>Kokos</span></div><nav><a href="./index.html">Home</a><a href="./privacy.html">Privacy</a><a href="./terms.html">Terms</a></nav></header>
+    <main class="docs-list">
+      <h1>Deployment</h1>
+      <p class="lead">Kokos deploys as a Docker Compose stack with the bot, PostgreSQL, and Redis.</p>
+      <h2>Windows</h2>
+      <p>Copy <code>.env.example</code> to <code>.env</code>, fill the required values, and run:</p>
+      <pre><code>start_bot.bat</code></pre>
+      <h2>Linux</h2>
+      <pre><code>docker compose up -d --build
+docker compose logs -f bot</code></pre>
+      <h2>Maintenance</h2>
+      <p>Maintenance mode keeps the bot online but disables video processing.</p>
+      <pre><code>BOT_MAINTENANCE=true docker compose up -d --build</code></pre>
+    </main>
+  </body>
+</html>
+
+

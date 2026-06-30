@@ -16,3 +16,8 @@ All notable changes to Kokos are documented here.
 - Project logo assets.
 - Repository governance, security, support, and documentation files.
 
+### Improved
+
+- Company-grade repository presentation with CI, CodeQL, Dependabot, release
+  workflow, Pages-ready docs, roadmap, production checklist, and governance
+  files.
