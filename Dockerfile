@@ -1,4 +1,4 @@
-FROM python:3.12-slim
+FROM python:3.14-slim
 
 LABEL org.opencontainers.image.title="Kokos"
 LABEL org.opencontainers.image.description="Telegram bot for TikTok and YouTube Shorts video replies"
