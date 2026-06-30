@@ -9,9 +9,10 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/Oleksii1221/Kokos/releases/tag/v0.1.0"><img alt="version" src="https://img.shields.io/badge/version-0.1.0-21d6c3?style=for-the-badge&labelColor=4a4a4a"></a>
-  <img alt="platform" src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-b9f24b?style=for-the-badge&labelColor=4a4a4a">
-  <a href="LICENSE"><img alt="license" src="https://img.shields.io/badge/license-MIT-101820?style=for-the-badge&labelColor=4a4a4a"></a>
+  <a href="https://github.com/Oleksii1221/Kokos/releases/tag/v0.1.0"><img alt="release" src="https://img.shields.io/badge/release-v0.1.0-21d6c3?style=for-the-badge&labelColor=101820"></a>
+  <img alt="bot" src="https://img.shields.io/badge/bot-Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white&labelColor=101820">
+  <img alt="runtime" src="https://img.shields.io/badge/runtime-Docker%20Compose-2496ED?style=for-the-badge&logo=docker&logoColor=white&labelColor=101820">
+  <a href="LICENSE"><img alt="license" src="https://img.shields.io/badge/license-MIT-b9f24b?style=for-the-badge&labelColor=101820"></a>
 </p>
 
 <p align="center">
@@ -19,6 +20,7 @@
   <a href="https://github.com/Oleksii1221/Kokos/actions/workflows/codeql.yml"><img alt="CodeQL" src="https://img.shields.io/github/actions/workflow/status/Oleksii1221/Kokos/codeql.yml?branch=dev&label=CodeQL&style=flat-square&labelColor=101820"></a>
   <img alt="Python" src="https://img.shields.io/badge/Python-3.12-3776AB?style=flat-square&logo=python&logoColor=white&labelColor=101820">
   <img alt="aiogram" src="https://img.shields.io/badge/aiogram-3.13.1-2CA5E0?style=flat-square&labelColor=101820">
+  <img alt="yt-dlp" src="https://img.shields.io/badge/media-yt--dlp%20%2B%20ffmpeg-21d6c3?style=flat-square&labelColor=101820">
   <img alt="Docker" src="https://img.shields.io/badge/Docker-ready-2496ED?style=flat-square&logo=docker&logoColor=white&labelColor=101820">
   <img alt="PostgreSQL" src="https://img.shields.io/badge/PostgreSQL-16-4169E1?style=flat-square&logo=postgresql&logoColor=white&labelColor=101820">
   <img alt="Redis" src="https://img.shields.io/badge/Redis-7-DC382D?style=flat-square&logo=redis&logoColor=white&labelColor=101820">
@@ -203,4 +205,3 @@ related brands. Operators are responsible for using Kokos in compliance with
 applicable laws, platform terms, chat rules, and copyright requirements.
 
 Released under the [MIT License](LICENSE).
-
